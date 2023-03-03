@@ -1,7 +1,12 @@
 import React from "react";
 
-const getNaApi = (event) => {
-    console.log('Get na Api', event.target.value);
+const getNaApi = async (e) => {
+    e.preventDefault();
+    const search = e.target.value;
+    console.log('INPUT', search);
+    await fetch(`http://localhost:1234/${search}`)
+         .then(resp => console.log(resp.body))
+         .catch(err => console.log('FRONT-ERROR', err))
 }
 
 const Home = () => {
