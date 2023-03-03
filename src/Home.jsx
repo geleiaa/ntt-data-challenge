@@ -1,10 +1,10 @@
 import React from "react";
 
-const getNaApi = async (e) => {
+const getNoBackend = async (e) => {
     e.preventDefault();
     const search = e.target.value;
     console.log('INPUT', search);
-    await fetch(`http://localhost:1234/${search}`)
+    const response = await fetch(`http://localhost:1234/${search}`)
          .then(resp => console.log(resp.body))
          .catch(err => console.log('FRONT-ERROR', err))
 }
@@ -19,7 +19,7 @@ const Home = () => {
                 </div>
                 <div className="search">
                     <input placeholder="Search" className="inpstyle" type='text' />
-                    <button className="btstyle" onClick={e => getNaApi(e)} >Submit</button>
+                    <button className="btstyle" onClick={e => getNoBackend(e)} >Submit</button>
                     <button className="btstyle" >Reset</button>
                 </div >
             </section>
