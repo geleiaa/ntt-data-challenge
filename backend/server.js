@@ -6,16 +6,20 @@ const app = express();
 app.use(cors());
 
 
-app.get('/', async (req, res) =>{
+app.get('/:movie', async (req, res) =>{
 
-    const search = req.body;
+    const search = req.params.movie;
     console.log('Movie', search);
 
+    try{
     const movie = await fetch(`http://www.omdbapi.com/?t=${search}&apikey=b9450d8c`)
-                        .then(resp => console.log(resp))
-                        .catch(err => console.log(err))
+    const data = await movie.json()
 
-    res.json({ back: movie });
+    console.log('DataMovie', data);
+    res.send({ data: data });
+    }catch(err){
+        console.log('BACK-ERRO', err);
+    }
 })
 
 const port = 1234;

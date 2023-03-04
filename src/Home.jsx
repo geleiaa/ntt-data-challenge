@@ -1,15 +1,29 @@
 import React from "react";
+import { useState } from 'react';
 
-const getNoBackend = async (e) => {
-    e.preventDefault();
-    const search = e.target.value;
-    console.log('INPUT', search);
-    const response = await fetch(`http://localhost:1234/${search}`)
-         .then(resp => console.log(resp.body))
-         .catch(err => console.log('FRONT-ERROR', err))
-}
 
-const Home = () => {
+const Home = (props) => {
+    const [textInput, pegaUserInput] = useState('');
+
+    const submitUserinput = event => {
+        pegaUserInput(event.target.value)
+    }
+
+    const getNoBackend = async event => {
+        event.preventDefault();
+        console.log(textInput);
+
+        const search = textInput;
+        try {
+            const response = await fetch(`http://localhost:1234/${search}`)
+            const data = await response.json()
+            console.log({ data });
+        }catch(err){
+            console.log('FRONT-ERRO', err);
+        }
+              
+    }
+
     return (
         <>
             <section>
@@ -18,20 +32,16 @@ const Home = () => {
                     <p>Qualquer texto só pra testar</p>
                 </div>
                 <div className="search">
-                    <input placeholder="Search" className="inpstyle" type='text' />
-                    <button className="btstyle" onClick={e => getNoBackend(e)} >Submit</button>
+                    <input onChange={submitUserinput} placeholder="Search" className="inpstyle" type='text' />
+                    <button className="btstyle" onClick={getNoBackend} >Submit</button>
                     <button className="btstyle" >Reset</button>
                 </div >
             </section>
             <section>
                 <div className="movie">
                     <div className="moviedescr">
-                        <h3>Movie Title</h3>
-                        <p className="mvsinopse" >
-                            Thirty years after the events of Blade Runner (1982), <br />
-                            a new Blade Runner, L.A.P.D. Officer "K" (Ryan Gosling), unearths a long-buried secret that has <br />
-                            the potential to plunge what's left of society into chaos. K's discovery leads him on a quest to find <br />
-                            Rick Deckard (Harrison Ford), a former L.A.P.D. Blade Runner, who has been missing for thirty years. <br /> </p>
+                        <h3>Teste</h3>
+                        <p className="mvsinopse" >testando o teste que ja foi testado até demais</p>
                         <p>Elenco</p>
                         <p>Review</p>
                         <button className="btstyle" >Favorite</button>
