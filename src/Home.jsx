@@ -1,9 +1,38 @@
 import React from "react";
 import { useState } from 'react';
+import Movie from "./Movie";
 
+/*
+    useEffect(() => {
+            const getNoBackend = async () => {
+                try {
+                    const response = await fetch(`http://localhost:1234/${search}`)
+                    const data = await response.json()
 
-const Home = (props) => {
-    const [textInput, pegaUserInput] = useState('');
+                    const loadedMovie = [];
+
+                    for (let dt in data) {
+                        loadedMovie.push({
+                            title: dt.Title,
+                            sinopse: dt.Plot,
+                            elenco: dt.Actors,
+                            poster: dt.Poster
+                        })
+                    }
+
+                    console.log('FOI???', loadedMovie);
+
+                } catch (err) {
+                    console.log('FRONT-ERRO', err);
+                }
+
+                getNoBackend();
+            }
+        }, [])
+*/
+
+const Home = () => {
+    const [textInput, pegaUserInput] = useState([]);
 
     const submitUserinput = event => {
         pegaUserInput(event.target.value)
@@ -12,16 +41,28 @@ const Home = (props) => {
     const getNoBackend = async event => {
         event.preventDefault();
         console.log(textInput);
-
         const search = textInput;
         try {
             const response = await fetch(`http://localhost:1234/${search}`)
             const data = await response.json()
-            console.log({ data });
-        }catch(err){
-            console.log('FRONT-ERRO', err);
+            console.log('DATA', data);
+
+            const loadedMovie = [];
+
+            for (let dt in data) {
+                loadedMovie.push({
+                    title: dt.Title,
+                    sinopse: dt.Plot,
+                    elenco: dt.Actors,
+                    poster: dt.Poster
+                })
+            }
+
+            console.log('LOADED', loadedMovie);
+            pegaUserInput(loadedMovie);
+        } catch (err) {
+            console.log(err);
         }
-              
     }
 
     return (
@@ -38,16 +79,7 @@ const Home = (props) => {
                 </div >
             </section>
             <section>
-                <div className="movie">
-                    <div className="moviedescr">
-                        <h3>Teste</h3>
-                        <p className="mvsinopse" >testando o teste que ja foi testado até demais</p>
-                        <p>Elenco</p>
-                        <p>Review</p>
-                        <button className="btstyle" >Favorite</button>
-                    </div>
-                    <img className="poster" alt="Movie Poster" src="poster.jpg" />
-                </div>
+                <Movie movies={textInput} />
             </section>
         </>
     );
