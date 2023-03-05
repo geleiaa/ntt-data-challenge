@@ -18,6 +18,11 @@ div {
   position: relative;
 }
 
+.poster {
+  width: 220px;
+  height: 300px;
+}
+
 .search {
   display:inline;
 }
@@ -26,7 +31,7 @@ div {
   align-items: center;
   background-color: #adadad;
   border: 2px solid rgb(250, 245, 245);
-  border-radius: .25rem;
+  border-radius: 1.3rem;
   box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
   box-sizing: border-box;
   color: rgba(0, 0, 0, 0.85);
@@ -85,5 +90,5 @@ div {
   color: #000000;
   font-weight: 400;
   text-decoration: rgb(68, 68, 68);
-  text-align: center;
+  text-align: match-parent;
 }

@@ -1,68 +1,23 @@
 import React from "react";
 import { useState } from 'react';
-import Movie from "./Movie";
-
-/*
-    useEffect(() => {
-            const getNoBackend = async () => {
-                try {
-                    const response = await fetch(`http://localhost:1234/${search}`)
-                    const data = await response.json()
-
-                    const loadedMovie = [];
-
-                    for (let dt in data) {
-                        loadedMovie.push({
-                            title: dt.Title,
-                            sinopse: dt.Plot,
-                            elenco: dt.Actors,
-                            poster: dt.Poster
-                        })
-                    }
-
-                    console.log('FOI???', loadedMovie);
-
-                } catch (err) {
-                    console.log('FRONT-ERRO', err);
-                }
-
-                getNoBackend();
-            }
-        }, [])
-*/
 
 const Home = () => {
-    const [textInput, pegaUserInput] = useState([]);
+    const [movies, pegaMovieInput] = useState([]);
 
     const submitUserinput = event => {
-        pegaUserInput(event.target.value)
+        pegaMovieInput(event.target.value)
     }
 
-    const getNoBackend = async event => {
-        event.preventDefault();
-        console.log(textInput);
-        const search = textInput;
-        try {
-            const response = await fetch(`http://localhost:1234/${search}`)
-            const data = await response.json()
-            console.log('DATA', data);
+    const getNoBackend = async () => {
+        //event.preventDefault();
+        console.log(movies);
+        const search = movies;
 
-            const loadedMovie = [];
+        const response = await fetch(`http://localhost:1234/${search}`)  //`http://www.omdbapi.com/?t=${search}&plot=full&apikey=b9450d8c`
+        const data = await response.json()
+        console.log('DATA', data, typeof(data))
 
-            for (let dt in data) {
-                loadedMovie.push({
-                    title: dt.Title,
-                    sinopse: dt.Plot,
-                    elenco: dt.Actors,
-                    poster: dt.Poster
-                })
-            }
-
-            console.log('LOADED', loadedMovie);
-            pegaUserInput(loadedMovie);
-        } catch (err) {
-            console.log(err);
-        }
+        pegaMovieInput(data);
     }
 
     return (
@@ -70,7 +25,7 @@ const Home = () => {
             <section>
                 <div>
                     <h3>Seach Sinopse</h3>
-                    <p>Qualquer texto só pra testar</p>
+                    <p>Busque por filmes e veja as sinopses</p>
                 </div>
                 <div className="search">
                     <input onChange={submitUserinput} placeholder="Search" className="inpstyle" type='text' />
@@ -79,7 +34,15 @@ const Home = () => {
                 </div >
             </section>
             <section>
-                <Movie movies={textInput} />
+                <div className="movie">
+                    <div className="moviedescr">
+                        <h3>{movies.Title}</h3>
+                        <p className="mvsinopse" >{movies.Plot}</p>
+                        <p>Elenco: {movies.Actors}</p>
+                        <button className="btstyle" >Favorite</button>
+                    </div>
+                    <img className="poster" alt="Movie Poster" src={movies.Poster} />
+                </div>
             </section>
         </>
     );
