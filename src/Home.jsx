@@ -13,9 +13,8 @@ const Home = () => {
         console.log(movies);
         const search = movies;
 
-        const response = await fetch(`http://localhost:1234/${search}`)  //`http://www.omdbapi.com/?t=${search}&plot=full&apikey=b9450d8c`
+        const response = await fetch(`http://localhost:1234/${search}`)
         const data = await response.json()
-        console.log('DATA', data, typeof(data))
 
         pegaMovieInput(data);
     }
@@ -23,25 +22,54 @@ const Home = () => {
     return (
         <>
             <section>
-                <div>
-                    <h3>Seach Sinopse</h3>
+                <div className="inittext">
+                    <h3>Buscar Sinopse</h3>
                     <p>Busque por filmes e veja as sinopses</p>
                 </div>
                 <div className="search">
                     <input onChange={submitUserinput} placeholder="Search" className="inpstyle" type='text' />
-                    <button className="btstyle" onClick={getNoBackend} >Submit</button>
-                    <button className="btstyle" >Reset</button>
+                    <button onClick={getNoBackend} >Search</button>
+                    <button>Reset</button>
                 </div >
             </section>
             <section>
                 <div className="movie">
                     <div className="moviedescr">
                         <h3>{movies.Title}</h3>
-                        <p className="mvsinopse" >{movies.Plot}</p>
-                        <p>Elenco: {movies.Actors}</p>
-                        <button className="btstyle" >Favorite</button>
+                        {
+                            movies.length <= 15
+                                ? <p>Na barra de pesquisa acima você pode colocar o nome de um filme <br />
+                                    para buscar e ver algumas infomações do filme como <br />
+                                    sinopse, elenco, avaliação e um poster... <br />
+                                    Como você pode ver num exemplo de sinopse abaixo e um poster ao lado<br />
+                                </p>
+                                : <p className="mvsinopse" >{movies.Plot}</p>
+                        }
+
+                        {
+                            movies.length <= 15
+                                ? <p> </p>
+                                : <p>Elenco: {movies.Actors}</p>
+                        }
+
+                        {/* {
+                            movies.length <= 10
+                                ? <p> </p>
+                                : <p>{movies.Ratings[2]}</p>
+                        } */}
+
+                        {
+                            movies.length <= 15
+                                ? <p> </p>
+                                : <button className="btstyle" >Favorite</button>
+                        }
+
                     </div>
-                    <img className="poster" alt="Movie Poster" src={movies.Poster} />
+                    {
+                        movies.length <= 15
+                            ? <img className="poster" alt="Movie Poster" src="poster.jpg" />
+                            : <img className="poster" alt="Movie Poster" src={movies.Poster} />
+                    }
                 </div>
             </section>
         </>

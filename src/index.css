@@ -18,6 +18,32 @@ div {
   position: relative;
 }
 
+  /* border: 15px solid rgb(250, 245, 245);
+  border-color: white;
+  border-radius: 1.3rem;
+  width: 11.3rem; */
+  button {
+    font-family: inherit;
+    border: none;
+    outline: 1px dotted rgb(37, 37, 37);
+    outline-offset: -4px;
+    background: hsl(0deg 0% 75%);
+    box-shadow: inset -1px -1px #292929, inset 1px 1px #fff, inset -2px -2px rgb(158, 158, 158), inset 2px 2px #ffffff;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 5px 30px;
+    margin-left: 25px;
+  }
+  
+  button:active {
+    box-shadow: inset -1px -1px #fff, inset 1px 1px #292929, inset -2px -2px #ffffff, inset 2px 2px rgb(158, 158, 158);
+  }
+
+.inittext {
+  text-shadow: 1px 2px 1px rgba(20,54,164,0.63);
+}
+
 .poster {
   width: 220px;
   height: 300px;
@@ -27,46 +53,32 @@ div {
   display:inline;
 }
 
-.btstyle {
-  align-items: center;
-  background-color: #adadad;
-  border: 2px solid rgb(250, 245, 245);
-  border-radius: 1.3rem;
-  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
-  box-sizing: border-box;
-  color: rgba(0, 0, 0, 0.85);
-  cursor: pointer;
-  display: inline-flex;
-  font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  justify-content: center;
-  line-height: 1.25;
-  min-height: 3rem;
-  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
-  margin-left: 35px;
-  text-decoration: none;
-  transition: all 250ms;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: baseline;
-  width: auto;
-}
 
 .inpstyle {
-  width: 25%;
-  height: 42px;
-  line-height: 28px;
-  padding: 0 1rem;
-  padding-left: 2.5rem;
-  border: 2px solid transparent;
-  border-radius: 8px;
+  width: 100%;
+  max-width: 220px;
+  height: 30px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1.5px solid lightgrey;
   outline: none;
-  background-color: #f3f3f4;
-  color: #0d0c22;
-  transition: .3s ease;
+  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  box-shadow: 0px 0px 20px -18px;
 }
+
+.inpstyle:hover {
+  border: 2px solid lightgrey;
+  box-shadow: 0px 0px 20px -17px;
+}
+
+.inpstyle:active {
+  transform: scale(0.95);
+}
+
+.inpstyle:focus {
+  border: 2px solid grey;
+}
+
 
 .movie {
   -webkit-column-count: 2;

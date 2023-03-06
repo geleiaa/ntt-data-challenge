@@ -9,17 +9,15 @@ app.use(cors());
 app.get('/:movie', async (req, res) =>{
 
     const search = req.params.movie;
-    console.log('Movie', search);
-
+    
     try{
-    const movie = await fetch(`http://www.omdbapi.com/?t=${search}&plot=full&apikey=b9450d8c`)
+    const movie = await fetch(`http://www.omdbapi.com/?t=${search}&plot=short&apikey=b9450d8c`)
     const data = await movie.json()
 
-    console.log('DataMovie', data, typeof(data));
     res.json(data);
-    
+
     }catch(err){
-        console.log('BACK-ERRO', err);
+        throw new Error('Erro!!!')
     }
 })
 
