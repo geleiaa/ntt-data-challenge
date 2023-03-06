@@ -18,6 +18,10 @@ div {
   position: relative;
 }
 
+img {
+  border: 8px inset rgba(28,110,164,0.54);
+}
+
   /* border: 15px solid rgb(250, 245, 245);
   border-color: white;
   border-radius: 1.3rem;

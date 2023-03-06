@@ -10,7 +10,6 @@ const Home = () => {
 
     const getNoBackend = async () => {
         //event.preventDefault();
-        console.log(movies);
         const search = movies;
 
         const response = await fetch(`http://localhost:1234/${search}`)
@@ -37,7 +36,7 @@ const Home = () => {
                     <div className="moviedescr">
                         <h3>{movies.Title}</h3>
                         {
-                            movies.length <= 15
+                            movies.length <= 18
                                 ? <p>Na barra de pesquisa acima você pode colocar o nome de um filme <br />
                                     para buscar e ver algumas infomações do filme como <br />
                                     sinopse, elenco, avaliação e um poster... <br />
@@ -47,26 +46,27 @@ const Home = () => {
                         }
 
                         {
-                            movies.length <= 15
+                            movies.length <= 18
                                 ? <p> </p>
                                 : <p>Elenco: {movies.Actors}</p>
                         }
 
-                        {/* {
-                            movies.length <= 10
+                        {
+                            movies.length <= 18
                                 ? <p> </p>
-                                : <p>{movies.Ratings[2]}</p>
-                        } */}
+                                : <p>Avaliação:
+                                    {movies.Ratings.map(rt => rt.Source === 'Metacritic')}</p>
+                        }
 
                         {
-                            movies.length <= 15
+                            movies.length <= 18
                                 ? <p> </p>
                                 : <button className="btstyle" >Favorite</button>
                         }
 
                     </div>
                     {
-                        movies.length <= 15
+                        movies.length <= 18
                             ? <img className="poster" alt="Movie Poster" src="poster.jpg" />
                             : <img className="poster" alt="Movie Poster" src={movies.Poster} />
                     }
