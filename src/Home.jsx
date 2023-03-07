@@ -22,13 +22,14 @@ const Home = () => {
         <>
             <section>
                 <div className="inittext">
-                    <h3>Buscar Sinopse</h3>
-                    <p>Busque por filmes e veja as sinopses</p>
+                    <h3>Search synopsis</h3>
+                    <p>Search for movies and see synopses</p>
                 </div>
                 <div className="search">
                     <input onChange={submitUserinput} placeholder="Search" className="inpstyle" type='text' />
                     <button onClick={getNoBackend} >Search</button>
                     <button>Reset</button>
+                    {/* <button><input type="reset"/></button> */}
                 </div >
             </section>
             <section>
@@ -37,10 +38,10 @@ const Home = () => {
                         <h3>{movies.Title}</h3>
                         {
                             movies.length <= 18
-                                ? <p>Na barra de pesquisa acima você pode colocar o nome de um filme <br />
-                                    para buscar e ver algumas infomações do filme como <br />
-                                    sinopse, elenco, avaliação e um poster... <br />
-                                    Como você pode ver num exemplo de sinopse abaixo e um poster ao lado<br />
+                                ? <p>In the search bar above you can put the name of a movie <br />
+                                    to search and see some infomations of this film <br />
+                                    as synopsis, cast, evaluation and a poster... <br />
+                                    You can see the example of a poster next to.
                                 </p>
                                 : <p className="mvsinopse" >{movies.Plot}</p>
                         }
@@ -48,20 +49,19 @@ const Home = () => {
                         {
                             movies.length <= 18
                                 ? <p> </p>
-                                : <p>Elenco: {movies.Actors}</p>
+                                : <p>Actors: {movies.Actors}</p>
                         }
 
                         {
                             movies.length <= 18
                                 ? <p> </p>
-                                : <p>Avaliação:
-                                    {movies.Ratings.map(rt => rt.Source === 'Metacritic')}</p>
+                                : <p>Critic of <strong>{movies.Ratings[1].Source}</strong> with <strong>{movies.Ratings[1].Value}</strong> approval </p>
                         }
 
                         {
                             movies.length <= 18
                                 ? <p> </p>
-                                : <button className="btstyle" >Favorite</button>
+                                : <button className="btstyle" >Favoritar</button>
                         }
 
                     </div>
