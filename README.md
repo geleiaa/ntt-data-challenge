@@ -1,3 +1,6 @@
+> #### Para rodar o projeto, primeiro inicie o react com ```npm start```
+> #### e depois em outro shell inicie o server backend com ```npm run back```
+
 * Criar um SPA que busque informações sobre um título de filme pesquisado.
 
 A aplicação front-end deverá se comunicar com o aplicação back-end via api, esta por sua vez consumirá o serviço OMDBAPI (mais detalhes a seguir), deverá fazer a tratativa dos dados e retornar ao front um DTO. O front deverá consumir o objeto recebido e exibir na tela de acordo com o wireframe sugerido. Para isso você deverá criar uma conta para gerar sua ApiKey no seguinte serviço: http://www.omdbapi.com/ . Junto com este material você deve ter recebido um wireframe para usar como norte do seu layout, porém sinta-se livre para ir além.
